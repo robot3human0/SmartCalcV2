@@ -15,11 +15,12 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
+//    MainWindow(Controller *imya) : imya(imya_);
     ~MainWindow();
 
 private slots:
     void on_graphButton_clicked();
-
+//    Controller *imya_;
 private:
     Ui::MainWindow *ui;
 };

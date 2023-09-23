@@ -13,13 +13,16 @@ s21::FuVariant s21::Token::GetFuVariant() { return function_; }
 
 
 s21::Calculator::Calculator() : expression_(""), x_(0) {}
-s21::Calculator::Calculator(std::string& expression, double x) : expression_(expression), x_(x) {}
+s21::Calculator::Calculator(const std::string expression, const double x) : expression_(expression), x_(x) {}
 
 double s21::Calculator::GetAnswer() { return answer_; }
 std::string s21::Calculator::GetExpression() { return expression_; }
 void s21::Calculator::SetX(double newX) { x_ = newX; }
+void s21::Calculator::SetExpression(std::string newExpression) { expression_ = newExpression; }
 
-void s21::Calculator::Calc() {
+double s21::Calculator::Calc(std::string expression, double x) {
+    SetExpression(expression);
+    SetX(x);
     if (expression_.empty()) throw "Error: The Input Line is Empty!";
     std::transform(expression_.begin(), expression_.end(), expression_.begin(), ::tolower);
     expression_.erase(std::remove(expression_.begin(), expression_.end(), ' '), expression_.end());
@@ -29,6 +32,15 @@ void s21::Calculator::Calc() {
     FindUnaryOperatorsAndAddAZero();
     Validate();
     MakeCalculation();
+    GetAnswer();
+    return answer_;
+}
+
+void CalculateGraphic(double xMin, double xMax, int amoutOfDots) {
+    if (xMin > xMax) std::swap(xMin, xMax);
+    double step = (xMax - xMin) / amoutOfDots;
+
+    s21::Calculator graph();
 }
 
 void s21::Calculator::IsBracketsPaired() {

@@ -73,13 +73,15 @@ namespace s21 {
     class Calculator {
     public:
         Calculator();
-        Calculator(std::string& expression, double x);
+        Calculator(const std::string expression, const double x);
         ~Calculator() = default;
 
         double GetAnswer();
         std::string GetExpression();
         void SetX(double newX);
-        void Calc();
+        double Calc(std::string expression, double x);
+        void CalculateGraphic(double xMin, double xMax, int amoutOfDots);
+        void SetExpression(std::string newExpression);
 
     private:
         void Validate();
@@ -91,6 +93,9 @@ namespace s21 {
 
         double answer_;
         double x_;
+        double xMin_;
+        double xMax_;
+        int amoutOfPoints_;
         std::string expression_;
         std::stack<double> numbers_;
         std::stack<s21::Token> operators_;
