@@ -17,12 +17,11 @@ s21::Calculator::Calculator(const std::string expression, const double x) : expr
 
 double s21::Calculator::GetAnswer() { return answer_; }
 std::string s21::Calculator::GetExpression() { return expression_; }
+double s21::Calculator::GetX() { return x_; }
 void s21::Calculator::SetX(double newX) { x_ = newX; }
 void s21::Calculator::SetExpression(std::string newExpression) { expression_ = newExpression; }
 
-double s21::Calculator::Calc(std::string expression, double x) {
-    SetExpression(expression);
-    SetX(x);
+double s21::Calculator::Calc() {
     if (expression_.empty()) throw "Error: The Input Line is Empty!";
     std::transform(expression_.begin(), expression_.end(), expression_.begin(), ::tolower);
     expression_.erase(std::remove(expression_.begin(), expression_.end(), ' '), expression_.end());
@@ -36,11 +35,30 @@ double s21::Calculator::Calc(std::string expression, double x) {
     return answer_;
 }
 
-void CalculateGraphic(double xMin, double xMax, int amoutOfDots) {
+void s21::Calculator::CalculateGraphic(double xMin, double xMax, int amoutOfDots) {
     if (xMin > xMax) std::swap(xMin, xMax);
     double step = (xMax - xMin) / amoutOfDots;
+    double currentXPoint = xMin;
+    while (currentXPoint <= xMax) {
+        SetX(currentXPoint);
+        yDotCoordinates_.push(Calc());
+        xDotCoordinates_.push(currentXPoint);
+        currentXPoint += step;
+    }
+}   
 
-    s21::Calculator graph();
+bool s21::Calculator::IsEmptyQueueX() { return xDotCoordinates_.empty(); }
+
+double s21::Calculator::GetXPoint() {
+    double returnValue = xDotCoordinates_.front();
+    xDotCoordinates_.pop();
+    return returnValue;
+}
+
+double s21::Calculator::GetYPoint() {
+    double returnValue = yDotCoordinates_.front();
+    yDotCoordinates_.pop();
+    return returnValue;
 }
 
 void s21::Calculator::IsBracketsPaired() {

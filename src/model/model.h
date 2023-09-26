@@ -78,10 +78,14 @@ namespace s21 {
 
         double GetAnswer();
         std::string GetExpression();
+        double GetX();
         void SetX(double newX);
-        double Calc(std::string expression, double x);
+        double Calc();
         void CalculateGraphic(double xMin, double xMax, int amoutOfDots);
         void SetExpression(std::string newExpression);
+        double GetXPoint();
+        double GetYPoint();
+        bool IsEmptyQueueX();
 
     private:
         void Validate();
@@ -101,6 +105,8 @@ namespace s21 {
         std::stack<s21::Token> operators_;
         std::queue<s21::Token> rpnLine_;
         std::map<std::string, s21::Token> tokenMap_;
+        std::queue<double> xDotCoordinates_;
+        std::queue<double> yDotCoordinates_;
     };
 
 } // namespace s21
