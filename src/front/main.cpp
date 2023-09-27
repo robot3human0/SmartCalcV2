@@ -1,14 +1,12 @@
-#include "mainwindow.h"
-
 #include <QApplication>
 
-int main(int argc, char *argv[])
-{
-    QApplication a(argc, argv);
-//    model model
-// controller(&model)
-//    MainWindow(controller)
-    MainWindow w;
-    w.show();
-    return a.exec();
+#include "mainwindow.h"
+
+int main(int argc, char *argv[]) {
+  QApplication a(argc, argv);
+  s21::Calculator model;
+  s21::Controller controller(&model);
+  MainWindow w(&controller);
+  w.show();
+  return a.exec();
 }
