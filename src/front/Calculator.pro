@@ -9,25 +9,23 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    ../controller/controller.cc \
     ../model/model.cc \
+    controller.cpp \
     graph.cpp \
     main.cpp \
-    mainwindow.cpp \
     mylineedit.cpp \
     qcustomplot.cpp
 
 HEADERS += \
-    ../controller/controller.h \
     ../model/model.h \
+    controller.h \
     graph.h \
-    mainwindow.h \
     mylineedit.h \
     qcustomplot.h
 
 FORMS += \
-    graph.ui \
-    mainwindow.ui
+    controller.ui \
+    graph.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

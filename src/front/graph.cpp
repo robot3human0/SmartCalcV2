@@ -1,31 +1,23 @@
 #include "graph.h"
 
 #include <QVector>
+#include <sstream>
 
 #include "ui_graph.h"
 
-// Graph::Graph(QVector<double> *xs, QVector<double> *ys, QWidget *parent)
-//     : QWidget(parent)
-//     , ui(new Ui::Graph)
-//     , xs_(xs = new QVector<double>)
-//     , ys_(ys = new QVector<double>)
-//{
-//     ui->setupUi(this);
-// }
-
-Graph::Graph(QWidget *parent) : QWidget(parent), ui(new Ui::Graph) {
-  xs_ = new QVector<double>;
-  ys_ = new QVector<double>;
+s21::Graph::Graph(QWidget *parent) : QWidget(parent), ui(new Ui::Graph) {
   ui->setupUi(this);
 }
 
-Graph::~Graph() {
-  delete xs_;
-  delete ys_;
+s21::Graph::~Graph() {
   delete ui;
 }
 
-void Graph::Draw(double xMin, double xMax, double yMin, double yMax) {
+QVector<double> *s21::Graph::GetAddressOfxCoordinatesVec() { return &xCoordinates_; }
+
+QVector<double> *s21::Graph::GetAddressOfyCoordinatesVec() { return &yCoordinates_; }
+
+void s21::Graph::Draw(double xMin, double xMax, double yMin, double yMax) {
   ui->graphicsView->xAxis->setRange(xMin, xMax);
   ui->graphicsView->yAxis->setRange(yMin, yMax);
   ui->graphicsView->clearGraphs();
@@ -33,10 +25,10 @@ void Graph::Draw(double xMin, double xMax, double yMin, double yMax) {
   ui->graphicsView->graph(0)->setLineStyle(QCPGraph::lsNone);
   ui->graphicsView->graph(0)->setScatterStyle(
       QCPScatterStyle(QCPScatterStyle::ssCircle, 5));
-  ui->graphicsView->graph(0)->addData(*xs_, *ys_);
+  ui->graphicsView->graph(0)->addData(xCoordinates_, yCoordinates_);
   ui->graphicsView->replot();
   ui->graphicsView->setInteraction(QCP::iRangeZoom, true);
   ui->graphicsView->setInteraction(QCP::iRangeDrag, true);
-  xs_->clear();
-  ys_->clear();
+  xCoordinates_.clear();
+  yCoordinates_.clear();
 }

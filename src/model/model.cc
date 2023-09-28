@@ -14,9 +14,9 @@ s21::Associativity s21::Token::GetAssociativity() { return associativity_; }
 s21::Type s21::Token::GetType() { return type_; }
 s21::FuVariant s21::Token::GetFuVariant() { return function_; }
 
-s21::Calculator::Calculator() : expression_(""), x_(0) {}
+s21::Calculator::Calculator() : x_(0), expression_("") {}
 s21::Calculator::Calculator(const std::string expression, const double x)
-    : expression_(expression), x_(x) {}
+    : x_(x), expression_(expression) {}
 
 double s21::Calculator::GetAnswer() { return answer_; }
 std::string s21::Calculator::GetExpression() { return expression_; }
@@ -45,12 +45,14 @@ double s21::Calculator::Calc() {
 
 void s21::Calculator::CalculateGraphic(double xMin, double xMax, double yMin,
                                        double yMax) {
-  xDotCoordinates_.reserve(1000000);
-  yDotCoordinates_.reserve(1000000);
+  xDotCoordinates_.reserve(20000);
+  yDotCoordinates_.reserve(20000);
+  xDotCoordinates_.clear();
+  yDotCoordinates_.clear();
   if (xMin > xMax) std::swap(xMin, xMax);
   if (yMin > yMax) std::swap(yMin, yMax);
   double limit = yMax - yMin;
-  double step = (xMax - xMin) / amoutOfPoints;
+  double step = (xMax - xMin) / 150;
   double currentXPoint = xMin;
   double currentYPoint = 0;
   while (currentXPoint <= xMax) {

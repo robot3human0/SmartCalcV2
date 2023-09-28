@@ -13,6 +13,7 @@
 #include <stack>
 #include <string>
 #include <variant>
+#include <QDebug>
 
 namespace s21 {
 template <class... Ts>
@@ -87,7 +88,6 @@ class Calculator {
   std::vector<double>* GetXPoint();
   std::vector<double>* GetYPoint();
   bool IsEmptyQueueX();
-  static const double amoutOfPoints;
 
  private:
   void Validate();
@@ -107,8 +107,6 @@ class Calculator {
   std::vector<double> xDotCoordinates_;
   std::vector<double> yDotCoordinates_;
 };
-
-inline const double s21::Calculator::amoutOfPoints = 1e5 - 1;
 
 }  // namespace s21
 
