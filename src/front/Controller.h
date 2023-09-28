@@ -2,9 +2,10 @@
 #define CONTROLLER_H
 
 #include <QMainWindow>
+#include <QMessageBox>
 #include <QRegularExpression>
 #include <QRegularExpressionValidator>
-#include <QMessageBox>
+
 #include "../model/model.h"
 #include "graph.h"
 #include "mylineedit.h"
@@ -28,12 +29,12 @@ class Controller : public QMainWindow {
   void on_equalButton_clicked();
   void on_printGraphButton_clicked();
 
-private:
+ private:
   Ui::Controller *ui;
   s21::Graph *graph_;
   s21::Calculator model_;
   QVector<double> *xCoordinateVec_;
   QVector<double> *yCoordinateVec_;
 };
-}
+}  // namespace s21
 #endif  // CONTROLLER_H

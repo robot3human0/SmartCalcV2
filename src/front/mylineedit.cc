@@ -32,12 +32,13 @@ void MyLineEdit::keyPressEvent(QKeyEvent* event) {
   if (event->text() == "/") setText(text() + "/");
   if (event->text() == ".") setText(text() + ".");
   if (event->text() == "x") setText(text() + "x");
+  if (event->text() == "e") setText(text() + "e");
   if (event->key() == Qt::Key_Backspace) {
-      backspace();
-      if (text() == "") this->setStyleSheet("QLineEdit{background: none;}");
+    backspace();
+    if (text() == "") this->setStyleSheet("QLineEdit{background: none;}");
   }
   if (event->key() == Qt::Key_Delete) {
-      clear();
-      this->setStyleSheet("QLineEdit{background: none;}");
+    clear();
+    this->setStyleSheet("QLineEdit{background: none;}");
   }
 }

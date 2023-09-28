@@ -9,13 +9,15 @@ s21::Graph::Graph(QWidget *parent) : QWidget(parent), ui(new Ui::Graph) {
   ui->setupUi(this);
 }
 
-s21::Graph::~Graph() {
-  delete ui;
+s21::Graph::~Graph() { delete ui; }
+
+QVector<double> *s21::Graph::GetAddressOfxCoordinatesVec() {
+  return &xCoordinates_;
 }
 
-QVector<double> *s21::Graph::GetAddressOfxCoordinatesVec() { return &xCoordinates_; }
-
-QVector<double> *s21::Graph::GetAddressOfyCoordinatesVec() { return &yCoordinates_; }
+QVector<double> *s21::Graph::GetAddressOfyCoordinatesVec() {
+  return &yCoordinates_;
+}
 
 void s21::Graph::Draw(double xMin, double xMax, double yMin, double yMax) {
   ui->graphicsView->xAxis->setRange(xMin, xMax);

@@ -1,7 +1,6 @@
 #ifndef MODEL_H
 #define MODEL_H
 
-#include <vector>
 #include <cmath>
 #include <functional>
 #include <iomanip>
@@ -13,7 +12,7 @@
 #include <stack>
 #include <string>
 #include <variant>
-#include <QDebug>
+#include <vector>
 
 namespace s21 {
 template <class... Ts>
@@ -81,13 +80,13 @@ class Calculator {
   double GetAnswer();
   std::string GetExpression();
   double GetX();
-  void SetX(double newX);
+  void SetX(const double newX);
   double Calc();
   void CalculateGraphic(double xMin, double xMax, double yMin, double yMax);
-  void SetExpression(std::string newExpression);
+  void SetExpression(const std::string newExpression);
   std::vector<double>* GetXPoint();
   std::vector<double>* GetYPoint();
-  bool IsEmptyQueueX();
+  void CleanAllStacksLinesAndVectors();
 
  private:
   void Validate();
@@ -96,6 +95,7 @@ class Calculator {
   void MakeCalculation();
   void ToRPN(const std::string& lexeme);
   void FindUnaryOperatorsAndAddAZero();
+  double PopFromNumbers_Stack(std::stack<double>* stack);
 
   double answer_;
   double x_;

@@ -21,13 +21,13 @@ s21::Calculator::Calculator(const std::string expression, const double x)
 double s21::Calculator::GetAnswer() { return answer_; }
 std::string s21::Calculator::GetExpression() { return expression_; }
 double s21::Calculator::GetX() { return x_; }
-void s21::Calculator::SetX(double newX) { x_ = newX; }
-void s21::Calculator::SetExpression(std::string newExpression) {
+void s21::Calculator::SetX(const double newX) { x_ = newX; }
+void s21::Calculator::SetExpression(const std::string newExpression) {
   expression_ = newExpression;
 }
 
 double s21::Calculator::Calc() {
-  if (expression_.empty()) throw "Error: The Input Line is Empty!";
+  if (expression_.empty()) throw "Error: The Expression is Empty!";
   std::transform(expression_.begin(), expression_.end(), expression_.begin(),
                  ::tolower);
   expression_.erase(std::remove(expression_.begin(), expression_.end(), ' '),
@@ -58,7 +58,6 @@ void s21::Calculator::CalculateGraphic(double xMin, double xMax, double yMin,
   while (currentXPoint <= xMax) {
     SetX(currentXPoint);
     xDotCoordinates_.push_back(currentXPoint);
-    SetX(currentXPoint);
     currentYPoint = Calc();
     if (currentYPoint < yMin - limit || currentYPoint > yMax + limit)
       currentYPoint = NAN;
@@ -66,8 +65,6 @@ void s21::Calculator::CalculateGraphic(double xMin, double xMax, double yMin,
     currentXPoint += step;
   }
 }
-
-bool s21::Calculator::IsEmptyQueueX() { return xDotCoordinates_.empty(); }
 
 std::vector<double>* s21::Calculator::GetXPoint() { return &xDotCoordinates_; }
 
@@ -89,9 +86,8 @@ void s21::Calculator::IsBracketsPaired() {
     if (*iter == ',') *iter = '.';
     ++iter;
   }
-  if (correctSequenceBrackets == 1)
-    throw std::logic_error("Error: Wrong sequence or brackets!");
-  if (brackets != 0) throw std::logic_error("Error: Unpaired bracket!\n");
+  if (brackets != 0) throw "Error: Unpaired bracket!";
+  if (correctSequenceBrackets == 1) throw "Error: Wrong sequence or brackets!";
 }
 
 void s21::Calculator::FindUnaryOperatorsAndAddAZero() {
@@ -205,32 +201,32 @@ void s21::Calculator::CreateTokenMap() {
                        s21::Type::Bracket, nullptr)},
       {"x", s21::Token("x", s21::Precedence::Zero, s21::Associativity::Nope,
                        s21::Type::Num, nullptr)},
-      {"e", s21::Token("e", s21::Precedence::Ultra, s21::Associativity::Right,
-                       s21::Type::oUnary, expl)},
   };
   tokenMap_.insert(list);
 }
 
 void s21::Calculator::MakeCalculation() {
+  if (rpnLine_.empty()) throw "Error: Invalid Expression!";
   s21::Associativity associativity = rpnLine_.front().GetAssociativity();
+  std::string name;
   while (!rpnLine_.empty()) {
+    name = rpnLine_.front().GetName();
     std::visit(overloaded{
                    [&](double function) {
                      numbers_.push(function);
                      rpnLine_.pop();
                    },
                    [&](s21::fUnary function) {
-                     double num = numbers_.top();
-                     numbers_.pop();
+                     double num = PopFromNumbers_Stack(&numbers_);
                      numbers_.push(function(num));
                      rpnLine_.pop();
                    },
                    [&](s21::fBinary function) {
-                     double rightArg = numbers_.top();
-                     numbers_.pop();
-                     double leftArg = numbers_.top();
-                     numbers_.pop();
+                     double rightArg = PopFromNumbers_Stack(&numbers_);
+                     double leftArg = PopFromNumbers_Stack(&numbers_);
                      if (associativity == Right) {
+                       if (name == "/" && rightArg == 0)
+                         throw "Error: Division by Zero is Not Allowed!";
                        numbers_.push(function(leftArg, rightArg));
                      } else {
                        numbers_.push(function(rightArg, leftArg));
@@ -245,7 +241,25 @@ void s21::Calculator::MakeCalculation() {
                rpnLine_.front().GetFuVariant());
     associativity = rpnLine_.front().GetAssociativity();
   }
-  if (numbers_.size() != 1) throw std::logic_error("Error: Invalid Expression");
+  if (numbers_.size() != 1) throw "Error: Invalid Expression";
   answer_ = numbers_.top();
   numbers_.pop();
+}
+
+double s21::Calculator::PopFromNumbers_Stack(std::stack<double>* stack) {
+  if (stack->empty()) throw "Error: Invalid Expression!";
+  double value = stack->top();
+  stack->pop();
+  return value;
+}
+
+void s21::Calculator::CleanAllStacksLinesAndVectors() {
+  std::stack<s21::Token> cleanStack;
+  std::swap(operators_, cleanStack);
+  std::stack<double> cleanStack2;
+  std::swap(numbers_, cleanStack2);
+  std::queue<s21::Token> clean_pnLine;
+  std::swap(rpnLine_, clean_pnLine);
+  xDotCoordinates_.clear();
+  yDotCoordinates_.clear();
 }

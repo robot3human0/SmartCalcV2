@@ -2,6 +2,7 @@
 #define GRAPH_H
 
 #include <QWidget>
+
 #include "qcustomplot.h"
 
 QT_BEGIN_NAMESPACE
@@ -27,6 +28,6 @@ class Graph : public QWidget {
   QVector<double> xCoordinates_;
   QVector<double> yCoordinates_;
 };
-}
+}  // namespace s21
 
 #endif  // GRAPH_H

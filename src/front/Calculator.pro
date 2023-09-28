@@ -10,11 +10,11 @@ CONFIG += c++17
 
 SOURCES += \
     ../model/model.cc \
-    controller.cpp \
-    graph.cpp \
-    main.cpp \
-    mylineedit.cpp \
-    qcustomplot.cpp
+    controller.cc \
+    graph.cc \
+    main.cc \
+    mylineedit.cc \
+    qcustomplot.cc
 
 HEADERS += \
     ../model/model.h \
