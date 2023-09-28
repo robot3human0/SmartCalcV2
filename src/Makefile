@@ -4,11 +4,11 @@ OS = $(shell uname)
 
 ifeq ($(OS), Darwin)
 	CHKFLAGS = -lm -lgtest -lgtest_main -lpthread
-	LK = leaks --atExit -- ./test.out
+	LK = leaks --atExit -- ./tests.out
 	PRINT = open
 else
 	CHKFLAGS = -lgtest -lgtest_main -pthread
-	LK = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose ./test.out
+	LK = valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose ./tests.out
 	PRINT = xdg-open
 endif
 
@@ -21,14 +21,18 @@ install:
 	cd build; make
 	cd ../
 	mkdir -p app
+ifeq ($(OS), Darwin)
 	cp -r build/Calculator.app app/
+else
+	cp -r build/Calculator app/
+endif
 
 run: install
-	ifeq ($(OS), Darwin)
-		./app/Calculator.app/Contents/MacOS/Calculator
-	else
-
-	endif
+ifeq ($(OS), Darwin)
+	./app/Calculator.app/Contents/MacOS/Calculator
+else
+	./app/Calculator
+endif
 
 uninstall:
 	@rm -rf app
@@ -54,8 +58,8 @@ dist:
 	cp -r front SmartCalcV2
 	cp -r model SmartCalcV2
 	cp Makefile SmartCalcV2
-	cp calc_test.c SmartCalcV2
-	cp documentation.html SmartCalcV2
+	cp tests.cc SmartCalcV2
+	# cp documentation.html SmartCalcV2
 	tar -czf SmartCalcV2.tar SmartCalcV2
 	rm -rf SmartCalcV2
 
@@ -78,7 +82,3 @@ style:
 	clang-format -style=google -n tests.cc
 
 	@rm -rf .clang-format
-
-leaks:
-	g++ $(CFLAGS) tests.cc model/model.cc $(CHKFLAGS) -o tests.out
-	$(LK)
