@@ -42,7 +42,7 @@ tests:
 	./tests.out
 
 dvi: 
-	open documentation.html
+	$(PRINT) readme.html
 
 gcov_report:
 	g++ $(CFLAGS) --coverage model/model.cc -c -o model_coverage.o

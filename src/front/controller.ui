@@ -42,7 +42,12 @@
    <double>1.000000000000000</double>
   </property>
   <property name="autoFillBackground">
-   <bool>false</bool>
+   <bool>true</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QTextBrowser {
+	border-image: url(:/new/prefix1/img/background.png)
+}</string>
   </property>
   <property name="tabShape">
    <enum>QTabWidget::Triangular</enum>
@@ -134,12 +139,16 @@
     <property name="focusPolicy">
      <enum>Qt::NoFocus</enum>
     </property>
+    <property name="acceptDrops">
+     <bool>false</bool>
+    </property>
     <property name="autoFillBackground">
      <bool>false</bool>
     </property>
     <property name="styleSheet">
      <string notr="true">QTextBrowser {
-	background-color: #fff855
+	background-image: url(:/new/prefix1/img/background.png);
+	border: 3px solid black;
 }</string>
     </property>
     <property name="frameShape">
@@ -162,12 +171,12 @@
 &lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;meta charset=&quot;utf-8&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
 p, li { white-space: pre-wrap; }
 &lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'American Typewriter'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;        &lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt; font-weight:700;&quot;&gt;Key Map:&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt; color:#ff0000;&quot;&gt;c&lt;/span&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;  -     cos          &lt;/span&gt;&lt;span style=&quot; font-size:18pt; color:#ff0000;&quot;&gt;s&lt;/span&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;  -   sin           &lt;/span&gt;&lt;span style=&quot; font-size:18pt; color:#ff0000;&quot;&gt;t&lt;/span&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;  -     tan&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt; color:#ff0000;&quot;&gt;C&lt;/span&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;  -  acos          &lt;/span&gt;&lt;span style=&quot; font-size:18pt; color:#ff0000;&quot;&gt;S&lt;/span&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt; - asin           &lt;/span&gt;&lt;span style=&quot; font-size:18pt; color:#ff0000;&quot;&gt;T&lt;/span&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt; -   atan&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt; color:#ff0000;&quot;&gt;q&lt;/span&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;  -    sqrt         &lt;/span&gt;&lt;span style=&quot; font-size:18pt; color:#ff0000;&quot;&gt;l&lt;/span&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;   -     ln          &lt;/span&gt;&lt;span style=&quot; font-size:18pt; color:#ff0000;&quot;&gt;L&lt;/span&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt; - log10&lt;/span&gt;&lt;/p&gt;
-&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt; color:#ff0000;&quot;&gt;%&lt;/span&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt; -   mod          &lt;/span&gt;&lt;span style=&quot; font-size:18pt; color:#ff0000;&quot;&gt;^&lt;/span&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt; - pow           &lt;/span&gt;&lt;span style=&quot; font-size:18pt; color:#ff0000;&quot;&gt;x&lt;/span&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;  -        x&lt;/span&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;      &lt;/span&gt;&lt;span style=&quot; font-size:18pt; font-weight:700;&quot;&gt;Key Map:&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt; color:#ff0000;&quot;&gt;	c&lt;/span&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;  -     cos          &lt;/span&gt;&lt;span style=&quot; font-size:18pt; color:#ff0000;&quot;&gt;s&lt;/span&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt; -    sin           &lt;/span&gt;&lt;span style=&quot; font-size:18pt; color:#ff0000;&quot;&gt;t&lt;/span&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;  -     tan&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt; color:#ff0000;&quot;&gt;	C&lt;/span&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;  -  acos          &lt;/span&gt;&lt;span style=&quot; font-size:18pt; color:#ff0000;&quot;&gt;S&lt;/span&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt; -  asin          &lt;/span&gt;&lt;span style=&quot; font-size:18pt; color:#ff0000;&quot;&gt;T&lt;/span&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt; -   atan&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt; color:#ff0000;&quot;&gt;	q&lt;/span&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;  -   sqrt          &lt;/span&gt;&lt;span style=&quot; font-size:18pt; color:#ff0000;&quot;&gt;l&lt;/span&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;  -      ln           &lt;/span&gt;&lt;span style=&quot; font-size:18pt; color:#ff0000;&quot;&gt;L&lt;/span&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt; - log10&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt; color:#ff0000;&quot;&gt;	%&lt;/span&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt; -   mod         &lt;/span&gt;&lt;span style=&quot; font-size:18pt; color:#ff0000;&quot;&gt;^&lt;/span&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;  -  pow           &lt;/span&gt;&lt;span style=&quot; font-size:18pt; color:#ff0000;&quot;&gt;x&lt;/span&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;  -        x&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt;&quot;&gt;	&lt;/span&gt;&lt;span style=&quot; font-size:18pt; color:#ff2600;&quot;&gt;e  &lt;/span&gt;&lt;span style=&quot; font-size:18pt; color:#000000;&quot;&gt;- scientific notation for long nums&lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:18pt; font-weight:700;&quot;&gt;  Tip: Drag and drop is enabled.&lt;/span&gt;&lt;/p&gt;
 &lt;p align=&quot;center&quot; style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-size:18pt; font-weight:700;&quot;&gt;&lt;br /&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
@@ -198,8 +207,19 @@ p, li { white-space: pre-wrap; }
     <property name="cursor">
      <cursorShape>PointingHandCursor</cursorShape>
     </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+	border-image: url(:/new/prefix1/img/push_button.png)
+}
+QPushButton:pressed {
+	border-image: url(:/new/prefix1/img/push_button_pressed.jpeg)
+}</string>
+    </property>
     <property name="text">
-     <string>=</string>
+     <string/>
     </property>
    </widget>
    <widget class="QLineEdit" name="xMinLine">
@@ -338,6 +358,22 @@ a
      <string>Print Graph</string>
     </property>
    </widget>
+   <zorder>mainLineEdit</zorder>
+   <zorder>xLineEdit</zorder>
+   <zorder>xLabel</zorder>
+   <zorder>label</zorder>
+   <zorder>equalButton</zorder>
+   <zorder>xMinLine</zorder>
+   <zorder>label_4</zorder>
+   <zorder>label_3</zorder>
+   <zorder>yMinLine</zorder>
+   <zorder>label_2</zorder>
+   <zorder>xMaxLine</zorder>
+   <zorder>yMaxLine</zorder>
+   <zorder>label_5</zorder>
+   <zorder>label_6</zorder>
+   <zorder>printGraphButton</zorder>
+   <zorder>textBrowser</zorder>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">

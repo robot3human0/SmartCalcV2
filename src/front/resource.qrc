@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>img/push_button_pressed.jpeg</file>
+        <file>img/push_button.png</file>
+        <file>img/background.png</file>
+    </qresource>
+</RCC>
